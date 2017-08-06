@@ -12,3 +12,4 @@ require 'pry'
 require_relative "../lib/calendar"
 require_relative "../lib/helper_methods"
 require_relative "../lib/event"
+require_relative "../lib/create_event"
