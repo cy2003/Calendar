@@ -5,7 +5,10 @@ require 'chronic'
 welcome
 create_calendar
 create_event_name
-all_day_event
+enter_start_time
+
+puts "#{@cal_name}, #{@event}, #{@cal_name.events}"
+# enter_start_time
 
 
 # def practice(name:'name', all_day: false, start_time:'start_time', end_time:'end_time',location:'location')

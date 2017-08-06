@@ -21,7 +21,6 @@ class Calendar
 
   def add_event(event)
     @events << event
-    event.calendar = self 
   end
 
 
