@@ -42,116 +42,184 @@ def create_calendar
   @cal_name = Calendar.new(calendar_name)
 end
 
-def create_event
-
+def create_event_name
   puts "Enter a name for your new event"
-
   ev_name = gets.strip
+end
 
+def all_day_event
   puts "All day event?
-  - Enter true for yes
-  - Enter false for no"
-
+    - Enter true for yes
+    - Enter false for no"
   all_day = gets.strip
-  if all_day.downcase == "true" || all_day.downcase == "false"
-    puts "Enter date and start time
-    - Format is year-month-day hour:minutes
-    - Example : for October 1, 2017 3:30pm enter 2017-10-01 15:30"
-    start_time = gets.strip
-  elsif all_day.downcase == 'exit'
-    exit_calendar
-    exit
-  else
-    puts "I do not understand that command.
-    I accept the following commands:
-      - true : for yes
-      - false : for no
-      - exit : to exit the program"
-    all_day = gets.strip
+  while true
+    if all_day.downcase == "true" || all_day.downcase == "false"
+      enter_start_time
+      break
+    elsif all_day.downcase == 'exit'
+      exit_calendar
+      exit
+    else
+      puts "I do not understand that command.
+      I accept the following commands:
+        - true : for yes
+        - false : for no
+        - exit : to exit the program"
+      all_day = gets.strip
+    end
   end
+end
 
-  until all_day.downcase == "true" || all_day.downcase == "false" || all_day.downcase == "exit"
-    puts "I do not understand that command.
-    I accept the following commands:
-      - true : for yes
-      - false : for no
-      - exit : to exit the program"
-    all_day = gets.strip
-  end
-
+def enter_start_time
   puts "Enter date and start time
   - Format is year-month-day hour:minutes
-  - Example : for October 1, 2017 3:30pm enter 2017-10-01 15:30"
-
+  - Example : enter 2017-10-01 15:30 for October 1, 2017 3:30pm"
   start_time = gets.strip
-
-  if start_time.match(/\d{4}-\d{2}-\d{2} \d{2}:\d{2}/) == nil
-    puts "The format is incorrect. Please try again
-    - Format is year-month-day hour:minutes
-    - Example : for October 1, 2017 3:30pm enter 2017-10-01 15:30"
-    start_time = gets.strip
-  else
-    puts "Enter date and end_time
-    - Format is year-month-day hour:minutes
-    - Example : for October 1, 2017 3:30pm enter 2017-10-01 15:30"
-    end_time = gets.strip
+  while true
+    if start_time.match(/\d{4}-\d{2}-\d{2} \d{2}:\d{2}/) == nil
+      puts "The format is incorrect. Please try again
+      - Format is year-month-day hour:minutes
+      - Example : October 1, 2017 3:30pm enter 2017-10-01 15:30"
+      start_time = gets.strip
+    else
+      enter_end_time
+      break
+    end
   end
+end
 
-  until start_time.match(/\d{4}-\d{2}-\d{2} \d{2}:\d{2}/) != nil
-    puts "The format is incorrect. Please try again
-    - Format is year-month-day hour:minutes
-    - Example : for October 1, 2017 3:30pm enter 2017-10-01 15:30"
-    start_time = gets.strip
-  end
-
+def enter_end_time
   puts "Enter date and end_time
   - Format is year-month-day hour:minutes
-  - Example : for October 1, 2017 3:30pm enter 2017-10-01 15:30"
+  - Example : October 1, 2017 3:30pm enter 2017-10-01 15:30"
   end_time = gets.strip
-
-  if end_time.match(/\d{4}-\d{2}-\d{2} \d{2}:\d{2}/) == nil
-    puts "The format is incorrect. Please try again
-    - Format is year-month-day hour:minutes
-    - Example : for October 1, 2017 3:30pm enter 2017-10-01 15:30"
-    end_time = gets.strip
-  else
-    puts "Enter location name"
-    location_name = gets.strip
+  while true
+    if end_time.match(/\d{4}-\d{2}-\d{2} \d{2}:\d{2}/) == nil
+      puts "The format is incorrect. Please try again
+      - Format is year-month-day hour:minutes
+      - Example : October 1, 2017 3:30pm enter 2017-10-01 15:30"
+      end_time = gets.strip
+    else
+      enter_location
+      break
+    end
   end
-
-  until end_time.match(/\d{4}-\d{2}-\d{2} \d{2}:\d{2}/) != nil
-    puts "The format is incorrect. Please try again
-    - Format is year-month-day hour:minutes
-    - Example : for October 1, 2017 3:30pm enter 2017-10-01 15:30"
-    end_time = gets.strip
-  end
-
-  puts "Enter location name"
-
-  location_name = gets.strip
-  location = {}
-  location[:name] = location_name
-
-  puts "Enter location address"
-
-  address = gets.strip
-  location[:address] = address
-
-  puts "Enter location city"
-  city = gets.strip
-  location[:city] = city
-
-  puts "Enter location state"
-  state = gets.strip
-  location[:state] = state
-
-  puts "Enter location zipcode"
-  zipcode = gets.strip
-  location[:zipcode] = zipcode
-
-  @event1 = Event.new(ev_name, all_day, start_time, end_time, location)
-  @cal_name.add_event(@event1)
-  binding.pry
-  puts @cal_name.events[0].location[:name]
-
 end
+
+def enter_location
+  puts "Enter location name"
+  location_name = gets.strip
+end
+
+
+
+# def create_event
+#
+#   puts "Enter a name for your new event"
+#
+#   ev_name = gets.strip
+#
+#   puts "All day event?
+#   - Enter true for yes
+#   - Enter false for no"
+#
+#   all_day = gets.strip
+#   if all_day.downcase == "true" || all_day.downcase == "false"
+#     puts "Enter date and start time
+#     - Format is year-month-day hour:minutes
+#     - Example : October 1, 2017 3:30pm enter 2017-10-01 15:30"
+#     start_time = gets.strip
+#   elsif all_day.downcase == 'exit'
+#     exit_calendar
+#     exit
+#   else
+#     puts "I do not understand that command.
+#     I accept the following commands:
+#       - true : for yes
+#       - false : for no
+#       - exit : to exit the program"
+#     all_day = gets.strip
+#   end
+#
+#   until all_day.downcase == "true" || all_day.downcase == "false" || all_day.downcase == "exit"
+#     puts "I do not understand that command.
+#     I accept the following commands:
+#       - true : for yes
+#       - false : for no
+#       - exit : to exit the program"
+#     all_day = gets.strip
+#   end
+#
+#   puts "Enter date and start time
+#   - Format is year-month-day hour:minutes
+#   - Example : October 1, 2017 3:30pm enter 2017-10-01 15:30"
+#
+#   start_time = gets.strip
+#   if start_time.match(/\d{4}-\d{2}-\d{2} \d{2}:\d{2}/) == nil
+#     puts "The format is incorrect. Please try again
+#     - Format is year-month-day hour:minutes
+#     - Example : October 1, 2017 3:30pm enter 2017-10-01 15:30"
+#     start_time = gets.strip
+#   else
+#     puts "Enter date and end_time
+#     - Format is year-month-day hour:minutes
+#     - Example : October 1, 2017 3:30pm enter 2017-10-01 15:30"
+#     end_time = gets.strip
+#   end
+#
+#   until start_time.match(/\d{4}-\d{2}-\d{2} \d{2}:\d{2}/) != nil
+#     puts "The format is incorrect. Please try again
+#     - Format is year-month-day hour:minutes
+#     - Example : October 1, 2017 3:30pm enter 2017-10-01 15:30"
+#     start_time = gets.strip
+#   end
+#
+#   puts "Enter date and end_time
+#   - Format is year-month-day hour:minutes
+#   - Example : October 1, 2017 3:30pm enter 2017-10-01 15:30"
+#   end_time = gets.strip
+#
+#   if end_time.match(/\d{4}-\d{2}-\d{2} \d{2}:\d{2}/) == nil
+#     puts "The format is incorrect. Please try again
+#     - Format is year-month-day hour:minutes
+#     - Example : October 1, 2017 3:30pm enter 2017-10-01 15:30"
+#     end_time = gets.strip
+#   else
+#     puts "Enter location name"
+#     location_name = gets.strip
+#   end
+#
+#   until end_time.match(/\d{4}-\d{2}-\d{2} \d{2}:\d{2}/) != nil
+#     puts "The format is incorrect. Please try again
+#     - Format is year-month-day hour:minutes
+#     - Example : October 1, 2017 3:30pm enter 2017-10-01 15:30"
+#     end_time = gets.strip
+#   end
+#
+#   puts "Enter location name"
+#
+#   location_name = gets.strip
+#   location = {}
+#   location[:name] = location_name
+#
+#   puts "Enter location address"
+#
+#   address = gets.strip
+#   location[:address] = address
+#
+#   puts "Enter location city"
+#   city = gets.strip
+#   location[:city] = city
+#
+#   puts "Enter location state"
+#   state = gets.strip
+#   location[:state] = state
+#
+#   puts "Enter location zipcode"
+#   zipcode = gets.strip
+#   location[:zipcode] = zipcode
+# end
+#
+#   @event1 = Event.new(name: ev_name, all_day: all_day, start_time: start_time, end_time: end_time, location: location)
+#   @cal_name.add_event(@event1)
+#   puts @cal_name.events[0].location[:name]

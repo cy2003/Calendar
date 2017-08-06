@@ -1,12 +1,12 @@
 class Event
 
-  attr_accessor :name, :calendar
+  attr_accessor :name, :calendar, :start_time, :end_time, :location
 
-  def initialize(name, all_day=false, start_time, end_time, **location)
+  def initialize(name:'name', all_day: false, start_time:'start_time', end_time:'end_time',location:'location')
     @name = name
     @all_day = all_day
-    @start_time = Time.parse(start_time)
-    @end_time = Time.parse(end_time)
+    @start_time = start_time
+    @end_time = end_time
     @location = location
   end
 
@@ -28,6 +28,6 @@ class Event
 
   def location
     @location
-  end 
+  end
 
 end
