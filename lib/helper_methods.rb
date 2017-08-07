@@ -25,6 +25,8 @@ def help
     find_event_by_name
   when "date"
     find_event_by_date
+  when "today"
+    find_todays_event
   else "exit"
     exit_calendar
     exit
@@ -115,25 +117,30 @@ def find_event_by_date
         puts "  -- Location: #{event.location[:name]}, #{event.location[:address]}, #{event.location[:city]}, #{event.location[:state]}, #{event.location[:zip]}"
       end
     end
+    if !event.start_time.starts_with?(date)
+      puts "No event was found for that date"
   end
   help
 end
-#
-# def enter_end_time
-#   puts "Enter date and end_time
-#   - Format: month/day/year hour:minutes(am/pm)
-#   - Example: 9/1/2017 3:00pm"
-#   end_time = gets.strip
-#   while true
-#     if end_time.match(%r{\d{,2}/\d{,2}/\d{4} \d{,2}:\w{4}}) == nil
-#       puts "The format is incorrect. Please try again
-#       - Format: month/day/year hour:minutes(am/pm)
-#       - Example: 9/1/2017 3:00pm"
-#       end_time = gets.strip
-#     else
-#       @event.end_time = end_time
-#       is_location
-#       break
-#     end
-#   end
-# end
+
+def find_todays_event
+  today = Chronic.parse('today')
+  @cal_name.events.each do |event|
+    if Chronic.parse(event.start_time).to_date == today.to_date
+      puts "#{event.name}
+  -- Start Time: #{event.start_time}"
+      if event.end_time
+        puts "  -- End Time: #{event.end_time}"
+      else
+        puts "  -- All Day Event"
+      end
+      if !event.location.empty?
+        puts "  -- Location: #{event.location[:name]}, #{event.location[:address]}, #{event.location[:city]}, #{event.location[:state]}, #{event.location[:zip]}"
+      end
+    end
+    if Chronic.parse(event.start_time).to_date != today.to_date
+      puts "No events for today"
+    end
+  end
+  help
+end
