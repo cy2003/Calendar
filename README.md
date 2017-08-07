@@ -1,3 +1,5 @@
+## Calendar CLI
+
 This is a calendar that can operate in your command line interface.
 
 To get started
@@ -12,7 +14,7 @@ This calendar can
 -- find events by date
 -- find today's events
 -- update events
--- delete events
+-- delete events 
 
 When entering date/time, format does matter. Follow the directions for proper format.
 
