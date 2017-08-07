@@ -143,14 +143,15 @@ end
 def new_event_saved
   puts "New Event Saved
   #{@event.name}
-  - start time: #{@event.start_time}"
+  -- Start time: #{@event.start_time}"
   if @event.end_time
-    puts "  - end time: #{@event.end_time}"
+    puts "  -- End time: #{@event.end_time}"
   else
-    puts "  - All Day Event"
+    puts "  -- All Day Event"
   end
   if !@event.location.empty?
-    puts"  - location: #{@event.location[:name]}, #{@event.location[:address]}, #{@event.location[:city]}, #{@event.location[:state]}, #{@event.location[:zip]}"
+    values = @event.location.values_at(:name, :address, :city, :state, :zipcode).compact
+    puts "  -- Location: #{values.join(', ')}" unless values.empty?
   else
     nil
   end

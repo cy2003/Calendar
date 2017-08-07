@@ -1,14 +1,18 @@
 def update_event
   puts "Enter name of event you would like to update"
   event_name = gets.strip
+  event_array = []
   @cal_name.events.each do |event|
-    if event.name == event_name
+    if event.name.downcase == event_name.downcase
+      event_array << event
       @update_event = event
       update_event_info
     end
   end
-  if event.name != event_name
+  if event_array.empty?
     puts "There is no event by that name"
+    help
+  else
     help
   end
 end
@@ -17,14 +21,14 @@ def update_event_info
   puts "-----------------------------------------------------------"
   puts "-----------------------------------------------------------"
   puts "Please enter one of the commands
-  -- name: updates the event name
-  -- start time: updates the date and time
-  -- end time: updates the end time
-  -- location: updates the location name
-  -- address: updates the location address
-  -- other: update a different event
-  -- help: go to help menu
-  -- exit: exits the calendar"
+  -- name       : updates the event name
+  -- start time : updates the date and time
+  -- end time   : updates the end time
+  -- location   : updates the location name
+  -- address    : updates the location address
+  -- other      : update a different event
+  -- help       : go to help menu
+  -- exit       : exits the calendar"
   event_info_input = gets.strip.downcase
   case event_info_input
   when "name"
@@ -147,14 +151,15 @@ end
 def event_updated
   puts "Event Updated
   #{@update_event.name}
-  - start time: #{@update_event.start_time}"
+  -- Start time: #{@update_event.start_time}"
   if @update_event.end_time
-    puts "  - end time: #{@update_event.end_time}"
+    puts "  -- End time: #{@update_event.end_time}"
   else
     puts "  - All Day Event"
   end
   if !@update_event.location.empty?
-    puts"  - location: #{@update_event.location[:name]}, #{@update_event.location[:address]}, #{@update_event.location[:city]}, #{@update_event.location[:state]}, #{@update_event.location[:zip]}"
+    values = @update_event.location.values_at(:name, :address, :city, :state, :zipcode).compact
+    puts "  -- Location: #{values.join(', ')}" unless values.empty?
   else
     nil
   end

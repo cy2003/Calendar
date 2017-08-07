@@ -12,7 +12,9 @@ require 'time'
 
 require_relative "../lib/models/calendar"
 require_relative "../lib/models/event"
+require_relative "../lib/runners/help_menu"
 require_relative "../lib/runners/script"
+require_relative "../lib/runners/calendar_methods"
 require_relative "../lib/runners/create_event"
 require_relative "../lib/runners/update_event"
 require_relative "../lib/runners/delete_event"
