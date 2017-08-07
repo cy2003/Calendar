@@ -2,9 +2,7 @@ require 'pry'
 
 class Calendar
 
-
   attr_accessor :name
-
 
   def initialize(name)
     @name = name
@@ -22,6 +20,5 @@ class Calendar
   def add_event(event)
     @events << event
   end
-
 
 end

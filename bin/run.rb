@@ -1,6 +1,4 @@
 require_relative '../config/environment'
-require 'chronic'
-require 'time'
 
 
 welcome

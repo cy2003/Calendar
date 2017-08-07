@@ -1,8 +1,10 @@
 def exit_calendar
-  puts "Good-bye"
+  puts "Good-bye. Have a nice day!"
 end
 
 def help
+  puts "---------------------------------------------------------"
+  puts "---------------------------------------------------------"
   puts "I accept the following commands:
     - help : displays this help message
     - add : adds an event to your Calendar
@@ -13,7 +15,7 @@ def help
     - update : update an event
     - delete : delete an event
     - exit : exits this program"
-  input = gets.strip
+  input = gets.strip.downcase
   case input
   when "help"
     help
@@ -27,9 +29,16 @@ def help
     find_event_by_date
   when "today"
     find_todays_event
-  else "exit"
+  when "update"
+    update_event
+  when "delete"
+    delete_event
+  when "exit"
     exit_calendar
     exit
+  else
+    puts "Command not found. Please try again"
+    help
   end
 end
 
@@ -41,7 +50,7 @@ def welcome
 end
 
 def create_calendar
-  input = gets.strip
+  input = gets.strip.downcase
   while true
     if input.downcase == 'create'
       puts "Please enter a name for your Calendar"
@@ -72,7 +81,7 @@ def list
       puts "  -- All Day Event"
     end
     if !event.location.empty?
-      puts "  -- Location: #{event.location[:name]}, #{event.location[:address]}, #{event.location[:city]}, #{event.location[:state]}, #{event.location[:zip]}"
+      puts "  -- Location: #{event.location[:name]}, #{event.location[:address]}, #{event.location[:city]} #{event.location[:state]}, #{event.location[:zip]}"
     end
     puts "-------------------------------------------------------------"
   end
@@ -119,6 +128,7 @@ def find_event_by_date
     end
     if !event.start_time.starts_with?(date)
       puts "No event was found for that date"
+    end
   end
   help
 end
