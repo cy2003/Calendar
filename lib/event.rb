@@ -5,8 +5,8 @@ class Event
   def initialize(name, start_time:nil, end_time:nil, **location)
     @name = name
     @all_day = false
-    @start_time = Time.parse(start_time) if start_time
-    @end_time = Time.parse(end_time) if end_time
+    @start_time = Chronic.parse(start_time) if start_time
+    @end_time = Chronic.parse(end_time) if end_time
     @location = {} || location[:name]
   end
 

@@ -12,16 +12,16 @@ end
 
 def enter_start_time
   puts "Enter date and start time
-  - Format is year-month-day hour:minutes
-  - Example : enter 2017-10-01 15:30 for October 1, 2017 3:30pm
-  - For All Day Event: enter year-month-day"
+  - Format: month/day/year hour:minutes(am/pm)
+  - Example: 9/1/2017 3:00pm
+  - For All Day Event: month/day/year"
   start_time = gets.strip
   while true
-    if (start_time.match(/\d{4}-\d{2}-\d{2} \d{2}:\d{2}/) || start_time.match(/\d{4}-\d{2}-\d{2}/)) == nil
+    if (start_time.match(%r{\d{,2}/\d{,2}/\d{4} \d{,2}:\w{4}}) || start_time.match(%r{\d{,2}/\d{,2}/\d{4}})) == nil
       puts "The format is incorrect. Please try again
-      - Format is year-month-day hour:minutes
-      - Example : October 1, 2017 3:30pm enter 2017-10-01 15:30
-      - For All Day Event: enter year-month-day"
+      - Format: month/day/year hour:minutes(am/pm)
+      - Example: 9/1/2017 3:00pm
+      - For All Day Event: month/day/year"
       start_time = gets.strip
     else
       @event.start_time = start_time
@@ -53,14 +53,14 @@ end
 
 def enter_end_time
   puts "Enter date and end_time
-  - Format is year-month-day hour:minutes
-  - Example : October 1, 2017 3:30pm enter 2017-10-01 15:30"
+  - Format: month/day/year hour:minutes(am/pm)
+  - Example: 9/1/2017 3:00pm"
   end_time = gets.strip
   while true
-    if end_time.match(/\d{4}-\d{2}-\d{2} \d{2}:\d{2}/) == nil
+    if end_time.match(%r{\d{,2}/\d{,2}/\d{4} \d{,2}:\w{4}}) == nil
       puts "The format is incorrect. Please try again
-      - Format is year-month-day hour:minutes
-      - Example : October 1, 2017 3:30pm enter 2017-10-01 15:30"
+      - Format: month/day/year hour:minutes(am/pm)
+      - Example: 9/1/2017 3:00pm"
       end_time = gets.strip
     else
       @event.end_time = end_time
@@ -148,7 +148,7 @@ def new_event_saved
   #{@event.name}
   - start time: #{@event.start_time}"
   if @event.end_time
-    puts "- end time: #{@event.end_time}"
+    puts "  - end time: #{@event.end_time}"
   else
     puts "  - All Day Event"
   end
