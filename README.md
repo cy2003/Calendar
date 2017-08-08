@@ -10,6 +10,7 @@ To get started
 
 This calendar can  
 -- add events with name, start date/time, end date/time, and location  
+-- list all events  
 -- find events by name  
 -- find events by date  
 -- find today's events  
