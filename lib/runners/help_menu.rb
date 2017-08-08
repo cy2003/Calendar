@@ -7,7 +7,7 @@ def help
     - list   : lists all your events
     - name   : find event by name
     - date   : find event by date
-    - today  : find today's event
+    - today  : find today's events
     - update : update an event
     - delete : delete an event
     - exit   : exits this program"
