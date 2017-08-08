@@ -30,6 +30,4 @@ class Event
     @all_day
   end
 
-
-
 end

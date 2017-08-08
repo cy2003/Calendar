@@ -12,16 +12,16 @@ end
 
 def enter_start_time
   puts "Enter date and start time
-  - Format: month/day/year hour:minutes(am/pm)
-  - Example: 9/1/2017 3:00pm
-  - For All Day Event: month/day/year"
+  - Format  : month/day/year hour:minutes(am/pm)
+  - Example : 9/1/2017 3:00pm
+  - For All Day Event : month/day/year"
   start_time = gets.strip
   while true
     if (start_time.match(%r{\d{,2}/\d{,2}/\d{4} \d{,2}:\w{4}}) || start_time.match(%r{\d{,2}/\d{,2}/\d{4}})) == nil
       puts "The format is incorrect. Please try again
-      - Format: month/day/year hour:minutes(am/pm)
-      - Example: 9/1/2017 3:00pm
-      - For All Day Event: month/day/year"
+      - Format  : month/day/year hour:minutes(am/pm)
+      - Example : 9/1/2017 3:00pm
+      - For All Day Event : month/day/year"
       start_time = gets.strip
     else
       @event.start_time = start_time
@@ -53,14 +53,14 @@ end
 
 def enter_end_time
   puts "Enter date and end_time
-  - Format: month/day/year hour:minutes(am/pm)
-  - Example: 9/1/2017 3:00pm"
+  - Format  : month/day/year hour:minutes(am/pm)
+  - Example : 9/1/2017 3:00pm"
   end_time = gets.strip
   while true
     if end_time.match(%r{\d{,2}/\d{,2}/\d{4} \d{,2}:\w{4}}) == nil
       puts "The format is incorrect. Please try again
-      - Format: month/day/year hour:minutes(am/pm)
-      - Example: 9/1/2017 3:00pm"
+      - Format  : month/day/year hour:minutes(am/pm)
+      - Example : 9/1/2017 3:00pm"
       end_time = gets.strip
     else
       @event.end_time = end_time

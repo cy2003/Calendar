@@ -63,16 +63,16 @@ end
 
 def update_event_start_time
   puts "Enter new date and start time
-  - Format: month/day/year hour:minutes(am/pm)
-  - Example: 9/1/2017 3:00pm
-  - For All Day Event: month/day/year"
+  - Format  : month/day/year hour:minutes(am/pm)
+  - Example : 9/1/2017 3:00pm
+  - For All Day Event : month/day/year"
   start_time = gets.strip
   while true
     if (start_time.match(%r{\d{,2}/\d{,2}/\d{4} \d{,2}:\w{4}}) || start_time.match(%r{\d{,2}/\d{,2}/\d{4}})) == nil
       puts "The format is incorrect. Please try again
-      - Format: month/day/year hour:minutes(am/pm)
-      - Example: 9/1/2017 3:00pm
-      - For All Day Event: month/day/year"
+      - Format  : month/day/year hour:minutes(am/pm)
+      - Example : 9/1/2017 3:00pm
+      - For All Day Event : month/day/year"
       start_time = gets.strip
     else
       @update_event.start_time = start_time
@@ -84,14 +84,14 @@ end
 
 def update_event_end_time
   puts "Enter new date and end time
-  - Format: month/day/year hour:minutes(am/pm)
-  - Example: 9/1/2017 3:00pm"
+  - Format  : month/day/year hour:minutes(am/pm)
+  - Example : 9/1/2017 3:00pm"
   end_time = gets.strip
   while true
     if (end_time.match(%r{\d{,2}/\d{,2}/\d{4} \d{,2}:\w{4}}) || end_time.match(%r{\d{,2}/\d{,2}/\d{4}})) == nil
       puts "The format is incorrect. Please try again
-      - Format: month/day/year hour:minutes(am/pm)
-      - Example: 9/1/2017 3:00pm"
+      - Format  : month/day/year hour:minutes(am/pm)
+      - Example : 9/1/2017 3:00pm"
       end_time = gets.strip
     else
       @update_event.end_time = end_time
@@ -155,7 +155,7 @@ def event_updated
   if @update_event.end_time
     puts "  -- End time: #{@update_event.end_time}"
   else
-    puts "  - All Day Event"
+    puts "  -- All Day Event"
   end
   if !@update_event.location.empty?
     values = @update_event.location.values_at(:name, :address, :city, :state, :zipcode).compact
